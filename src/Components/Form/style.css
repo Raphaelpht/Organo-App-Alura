@@ -1,0 +1,27 @@
+.form-data {
+    display: flex;
+    justify-content: right;
+    margin: 80px 20px;
+
+    form {
+        min-width: 400px;
+        max-width: 450px;
+        min-height: 60px;
+        padding: 20px 54px;
+        height: fit-content;
+        border-radius: 20px;
+        background-color: #F2F2F2;
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-container {
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    img {
+        height: 25px;
+        cursor: pointer; 
+    }
+}
