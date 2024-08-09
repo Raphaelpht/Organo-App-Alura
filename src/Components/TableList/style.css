@@ -4,10 +4,10 @@
     margin: 80px 20px;
 
     .table-list {
-        min-width: 400px;
-        max-width: 450px;
+        min-width: 350px;
+        max-width: 350px;
         min-height: 60px;
-        padding: 20px 54px;
+        padding: 20px 34px;
         height: fit-content;
         border-radius: 20px;
         background-color: #F2F2F2;

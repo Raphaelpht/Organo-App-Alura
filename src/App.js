@@ -87,7 +87,7 @@ function App() {
       varName     : age,
       required    : true,
       function    : setAge,
-      placeholder : "Digite o cargo",
+      placeholder : "Digite a idade",
     },
     {
       type        : "text",
@@ -135,12 +135,14 @@ function App() {
   const onSubmit = (event, title) => {
     event.preventDefault()
     if (title === 'newUser') {
+      const idUser = Math.random()
       addRegister(title, {
-          name,
-          age,
-          occupation, 
-          image, 
-          team
+          id         : idUser,
+          age        : age,
+          name       : name,
+          team       : team,
+          image      : image, 
+          occupation : occupation
       })
       setName('')
       setAge('')
@@ -186,7 +188,7 @@ function App() {
             name={team.name}
             firstColor={team.firstColor}
             secondColor={team.secondColor}
-            participants={participants.filter(participant => participant.team === team.name)}
+            participants={participants}
             setParticipants={setParticipants}
           />
         )}

@@ -3,22 +3,26 @@ import './style.css'
 
 const Team = ({participants, name, firstColor, secondColor, setParticipants}) => {
 
+    const team = participants.filter(participant => participant.team === name)
+
     const css = {backgroundColor: secondColor}
 
-    const deleteParticipant = (idParticipant) => {
-        var resposta = window.confirm(`Você deseja excluir ${idParticipant} do ${name} ?`);
+    const deleteParticipant = (idParticipant, nameDelete) => {
+        var resposta = window.confirm(`Você deseja excluir ${nameDelete} do ${name} ?`);
 
-        if (resposta) setParticipants(participants.filter(participant => participant.name !== idParticipant))
+        const updatedParticipant = participants.filter(participant => participant.id !== idParticipant)
+        if (resposta) setParticipants(updatedParticipant)
     }
 
     return (
-        (participants.length > 0) ?
+        (team.length > 0) ?
         <section className='team' style={css}>
             <h3 style={{borderColor: firstColor}}>{name}</h3>
             <div className='participants'>
-                {participants.map(participant => 
+                {team.map(participant => 
                     <Card
-                        key={participant.name}
+                        id={participant.id}
+                        key={participant.id}
                         name={participant.name}
                         age={participant.age}
                         image={participant.image}
