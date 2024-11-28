@@ -1,9 +1,11 @@
+import { AiFillCloseCircle } from 'react-icons/ai';
 import './style.css'
 
 const Card = ({id, name, office, age, image, bgColor, deleteParticipant}) => {
     return (
         <div className='card'>
             <div className='cabecalho' style={{backgroundColor: bgColor}}>
+                <AiFillCloseCircle size={25} className='deletar' src='/images/trash.png' alt='Deletar Colaborador' onClick={(event) => deleteParticipant(id, name)}/>
                 {image ?
                     <img className='img-perfil' src={image} alt={name} />
                 :
@@ -14,7 +16,6 @@ const Card = ({id, name, office, age, image, bgColor, deleteParticipant}) => {
                 <h4>{name}</h4>
                 <h5>{office}</h5>
                 <p>{age} Anos</p>
-                <img style={{width: '25px'}} src='/images/trash.png' alt='Deletar Colaborador' onClick={(event) => deleteParticipant(id, name)}/>
             </div>
         </div>
     )

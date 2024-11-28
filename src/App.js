@@ -4,6 +4,7 @@ import Form from './Components/Form';
 import Team from './Components/Team';
 import Footer from './Components/Footer';
 import TableList from './Components/TableList';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
@@ -15,45 +16,44 @@ function App() {
   const [team,  setTeam]  = useState("")
   const [occupation, setOccupation] = useState("")
 
-  const [teamName, setTeamName] = useState("")
-  const [colorOne, setColorOne] = useState("#000000")
-  const [colorTwo, setColorTwo] = useState("#000000")
+  const [teamName, setTeamName]  = useState("")
+  const [colorTeam, setColorTeam] = useState("#000000")
 
   const [teamList, setTeamList] = useState([
-    { 
-      name: "Diretoria", 
-      firstColor: '#57C278',
-      secondColor: '#D9F7E9',
+    {
+      id        : uuidv4(),
+      name      : "Diretoria", 
+      colorTeam : '#D9F7E9',
     },
     {
-      name: 'Financeiro',
-      firstColor: '#82CFFA',
-      secondColor: '#E8F8FF',
+      id        : uuidv4(),
+      name      : 'Financeiro',
+      colorTeam : '#E8F8FF',
     },
     {
-      name: 'Recursos Humanos',
-      firstColor: '#A6D157',
-      secondColor: '#F0F8E2',
+      id        : uuidv4(),
+      name      : 'Recursos Humanos',
+      colorTeam : '#F0F8E2',
     },
     {
-      name: 'Desenvolvimento',
-      firstColor: '#E06B69',
-      secondColor: '#FDE7E8',
+      id        : uuidv4(),
+      name      : 'Desenvolvimento',
+      colorTeam : '#FDE7E8',
     },
     {
-      name: 'Suporte',
-      firstColor: '#D86EBF',
-      secondColor: '#FAE5F5',
+      id        : uuidv4(),
+      name      : 'Suporte',
+      colorTeam : '#FAE5F5',
     },
     {
-      name: 'Interfaceamento',
-      firstColor: '#FEBA05',
-      secondColor: '#FFF5D9',
+      id        : uuidv4(),
+      name      : 'Interfaceamento',
+      colorTeam : '#FFF5D9',
     },
     {
-      name: 'Implantação',
-      firstColor: '#FF8A29',
-      secondColor: '#FFEEDF',
+      id        : uuidv4(),
+      name      : 'Implantação',
+      colorTeam : '#FFEEDF',
     }
   ])
 
@@ -119,25 +119,17 @@ function App() {
     {
       type        : "color",
       label       : "Cor do Card",
-      varName     : colorOne,
+      varName     : colorTeam,
       required    : true,
-      function    : setColorOne,
-    },
-    {
-      type        : "color",
-      label       : "Cor de Fundo",
-      varName     : colorTwo,
-      required    : true,
-      function    : setColorTwo,
-    },
+      function    : setColorTeam,
+    }
   ]
 
   const onSubmit = (event, title) => {
     event.preventDefault()
     if (title === 'newUser') {
-      const idUser = Math.random()
       addRegister(title, {
-          id         : idUser,
+          id         : uuidv4(),
           age        : age,
           name       : name,
           team       : team,
@@ -152,13 +144,12 @@ function App() {
     }
     if (title === 'newTeam') {
       addRegister(title, {
-        name:     teamName,
-        firstColor: colorOne,
-        secondColor: colorTwo
+        id        : uuidv4(),
+        name      : teamName,
+        colorTeam : colorTeam
       })
       setTeamName('')
-      setColorOne('#000000')
-      setColorTwo('#000000')
+      setColorTeam('#000000')
     }
   }
 
@@ -167,10 +158,19 @@ function App() {
     var resposta = window.confirm(`Você deseja excluir o time ${id}?`);
 
     if (resposta) {
-      const updatedList = teamList.filter((team) => team.name !== id);
+      const updatedList = teamList.filter((team) => team.id !== id);
       setTeamList(updatedList)
     }
 
+  }
+
+  const changeColorTeam = (color, id) => {
+    setTeamList(teamList.map(team => {
+      if (team.id === id) {
+        team.colorTeam = color
+      }
+      return team
+    }))
   }
 
   return (
@@ -183,13 +183,12 @@ function App() {
             <TableList title="Lista de times" listing={teamList} action={deleteTeam} expandButton={true}/>
         </div>
         {teamList.map(team => 
-          <Team 
+          <Team
             key={team.name}
-            name={team.name}
-            firstColor={team.firstColor}
-            secondColor={team.secondColor}
+            dataTeam={team}
             participants={participants}
             setParticipants={setParticipants}
+            changeColorTeam={changeColorTeam}
           />
         )}
       </div>

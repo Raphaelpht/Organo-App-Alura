@@ -27,7 +27,7 @@ const TableList = ({title, listing, expandButton = false, action, style}) => {
                             <div className="header-container">
                                 <h4>{field.name}</h4>
                                 <input type='hidden' value={field.name} />
-                                <img src='/images/trash.png' alt='Delete' onClick={(event) => action(field.name)} />
+                                <img src='/images/trash.png' alt='Delete' onClick={(event) => action(field.id)} />
                             </div>
                             <hr/>
                         </div>

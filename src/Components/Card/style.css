@@ -1,5 +1,7 @@
 .card {
     width: 280px;
+    position: relative;
+    padding: 20px 5px;
 
     .cabecalho {
         background-color:  #F0F0F0;
@@ -8,9 +10,11 @@
 
     .img-perfil {
         width: 100px;
+        height: 100px;
         border-radius: 50%;
         position: relative;
         bottom: -50px;
+        object-fit: cover;
     }
 
     .rodape {
@@ -34,6 +38,12 @@
         line-height: 22px;
         color: #212121;
         padding: 0 16px;
+    }
+
+    .deletar {
+        position: absolute;
+        right: -8px;
+        top: 8px;
     }
 
 }
