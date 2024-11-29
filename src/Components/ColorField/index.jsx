@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import './style.css'
+import * as S from './styled'
+import * as O from '../styled'
 
 const ColorField = ({changeValue, label, value, placeholder, required}) => {
 
@@ -12,10 +13,9 @@ const ColorField = ({changeValue, label, value, placeholder, required}) => {
 
     return (
         <>
-            <label>{label}</label>
-            <div className="color-field">
-                <input 
-                    className='input-color'
+            <O.Label>{label}</O.Label>
+            <S.ColorFieldContainer>
+                <S.InputColorField 
                     type="color"
                     id={label}
                     name={label}
@@ -25,7 +25,7 @@ const ColorField = ({changeValue, label, value, placeholder, required}) => {
                     required={required}
                     style={{backgroundColor: backColor}}
                 />
-                <input 
+                <S.ColorFieldInput 
                     type="text"
                     id={label}
                     name={label}
@@ -35,7 +35,7 @@ const ColorField = ({changeValue, label, value, placeholder, required}) => {
                     required={required}
                     readOnly
                 />
-            </div>
+            </S.ColorFieldContainer>
         </>
     )
 }

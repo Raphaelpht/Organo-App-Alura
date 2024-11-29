@@ -1,8 +1,8 @@
-import './style.css'
+import * as S from './styled'
 
 const Button = (props) => {
     return (
-        <button className='send-button'>{props.children}</button>
+        <S.SendButton>{props.children}</S.SendButton>
     )
 }
 

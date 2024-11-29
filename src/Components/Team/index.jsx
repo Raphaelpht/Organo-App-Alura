@@ -1,5 +1,5 @@
 import Card from '../Card'
-import './style.css'
+import * as S from './styled'
 import hexToRgba from 'hex-to-rgba'
 
 const Team = ({dataTeam, participants, setParticipants, changeColorTeam}) => {
@@ -17,10 +17,10 @@ const Team = ({dataTeam, participants, setParticipants, changeColorTeam}) => {
 
     return (
         (team.length > 0) ?
-        <section className='team' style={css}>
-            <input value={dataTeam.colorTeam} type='color' className='input-color' title='Mudar cor do time' onChange={event => changeColorTeam(event.target.value, dataTeam.id)}/>
-            <h3 style={{borderColor: dataTeam.colorTeam}}>{dataTeam.name}</h3>
-            <div className='participants'>
+        <S.TeamContainer style={css}>
+            <S.InputColor value={dataTeam.colorTeam} type='color' title='Mudar cor do time' onChange={event => changeColorTeam(event.target.value, dataTeam.id)}/>
+            <S.Title style={{borderColor: dataTeam.colorTeam}}>{dataTeam.name}</S.Title>
+            <S.Participants>
                 {team.map(participant => 
                     <Card
                         id={participant.id}
@@ -33,8 +33,8 @@ const Team = ({dataTeam, participants, setParticipants, changeColorTeam}) => {
                         deleteParticipant={deleteParticipant}
                     />
                 )}
-            </div>
-        </section>
+            </S.Participants>
+        </S.TeamContainer>
         : ''
     )
 }

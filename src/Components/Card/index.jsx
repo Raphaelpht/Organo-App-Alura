@@ -1,23 +1,25 @@
 import { AiFillCloseCircle } from 'react-icons/ai';
-import './style.css'
+import * as S from './styled'
 
 const Card = ({id, name, office, age, image, bgColor, deleteParticipant}) => {
     return (
-        <div className='card'>
-            <div className='cabecalho' style={{backgroundColor: bgColor}}>
-                <AiFillCloseCircle size={25} className='deletar' src='/images/trash.png' alt='Deletar Colaborador' onClick={(event) => deleteParticipant(id, name)}/>
+        <S.CardContainer>
+            <S.Cabecalho style={{backgroundColor: bgColor}}>
+                <S.Delete>
+                    <AiFillCloseCircle size={25} src='/images/trash.png' alt='Deletar Colaborador' onClick={(event) => deleteParticipant(id, name)}/>
+                </S.Delete>
                 {image ?
-                    <img className='img-perfil' src={image} alt={name} />
+                    <S.ImageProfile className='img-perfil' src={image} alt={name} />
                 :
-                <img className='img-perfil' src="/images/user.png" alt={name} />
+                <S.ImageProfile className='img-perfil' src="/images/user.png" alt={name} />
                 }
-            </div>
-            <div className='rodape'>
-                <h4>{name}</h4>
-                <h5>{office}</h5>
+            </S.Cabecalho>
+            <S.Rodape>
+                <S.Title4>{name}</S.Title4>
+                <S.Title5>{office}</S.Title5>
                 <p>{age} Anos</p>
-            </div>
-        </div>
+            </S.Rodape>
+        </S.CardContainer>
     )
 }
 

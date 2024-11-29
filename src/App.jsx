@@ -5,6 +5,7 @@ import Team from './Components/Team';
 import Footer from './Components/Footer';
 import TableList from './Components/TableList';
 import { v4 as uuidv4 } from 'uuid';
+import * as S from './styled'
 
 function App() {
 
@@ -56,13 +57,6 @@ function App() {
       colorTeam : '#FFEEDF',
     }
   ])
-
-  const addNewRegister = (action, newRegister) => {
-    if (action === "newUser") setParticipants([...participants, newRegister])
-    if (action === "newTeam") setTeamList([...teamList, newRegister])
-  }
-
-  const addRegister = (action, register) => addNewRegister(action, register)
 
   const fields = [
     {
@@ -125,6 +119,13 @@ function App() {
     }
   ]
 
+  const addNewRegister = (action, newRegister) => {
+    if (action === "newUser") setParticipants([...participants, newRegister])
+    if (action === "newTeam") setTeamList([...teamList, newRegister])
+  }
+
+  const addRegister = (action, register) => addNewRegister(action, register)
+
   const onSubmit = (event, title) => {
     event.preventDefault()
     if (title === 'newUser') {
@@ -176,12 +177,12 @@ function App() {
   return (
     <>
       <Banner/>
-      <div className="container">
-        <div className="forms">
+      <S.AppContainer>
+        <S.Forms>
             <Form title="Adicionar novo colaborador" titleButton="Criar Card" formName='newUser' fields={fields} action={onSubmit} />
             <Form title="Adicionar novo time" titleButton="Adicionar Time" formName='newTeam' fields={fieldsNew} action={onSubmit} expandButton={true}/>
             <TableList title="Lista de times" listing={teamList} action={deleteTeam} expandButton={true}/>
-        </div>
+        </S.Forms>
         {teamList.map(team => 
           <Team
             key={team.name}
@@ -191,7 +192,7 @@ function App() {
             changeColorTeam={changeColorTeam}
           />
         )}
-      </div>
+      </S.AppContainer>
       <Footer>Developed by<br/>Raphael Mariano</Footer>
     </>
   );

@@ -1,4 +1,6 @@
-.send-button {
+import styled from "styled-components";
+
+export const SendButton = styled.button`
     background-color: #6278F7;
     border-radius: 10px;
     font-weight: 700;
@@ -12,4 +14,5 @@
     &:hover {
         color: #95FFD4;
     }
-}
+
+`
