@@ -3,7 +3,7 @@ import Button from '../Button';
 import Selector from '../Selector';
 import TextField from '../TextField';
 import ColorField from '../ColorField';
-import './style.css';
+import * as S from '../styled'
 
 const Form = ({title, titleButton, formName, expandButton = false, fields, action, style}) => {
 
@@ -14,16 +14,16 @@ const Form = ({title, titleButton, formName, expandButton = false, fields, actio
     };
 
     return (
-        <section className='form-data' style={style}>
-            <form onSubmit={(event) => action(event, formName)}>
-                <div className='header-container'>
+        <S.DataContainer style={style} $margin={"80px 20px"}>
+            <S.FormContainer onSubmit={(event) => action(event, formName)}>
+                <S.DataContainer $alignIten={"center"} $justifyContent={"space-between"}>
                     <h3>{title}</h3>
                     {isExpanded ? 
-                        <img src='/images/expand.png' alt='Expandir' onClick={toggleExpand} />
+                        <S.ImageList src='/images/expand.png' alt='Expandir' onClick={toggleExpand} />
                         : 
-                        <img src='/images/recall.png' alt='Recolher' onClick={toggleExpand} />
+                        <S.ImageList src='/images/recall.png' alt='Recolher' onClick={toggleExpand} />
                     }
-                </div>
+                </S.DataContainer>
 
                 {!isExpanded && 
                     <>
@@ -60,8 +60,8 @@ const Form = ({title, titleButton, formName, expandButton = false, fields, actio
                         <Button>{titleButton}</Button>
                     </>
                 }
-            </form>
-        </section>
+            </S.FormContainer>
+        </S.DataContainer>
     )
 }
 

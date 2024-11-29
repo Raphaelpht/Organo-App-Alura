@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './style.css';
+import * as S from '../styled'
 
 const TableList = ({title, listing, expandButton = false, action, style}) => {
 
@@ -10,32 +10,32 @@ const TableList = ({title, listing, expandButton = false, action, style}) => {
     };
 
     return (
-        <section className='form-data' style={style}>
-            <div className='table-list'>
-                <div className='header-container'>
+        <S.DataContainer style={style} $margin={"80px 20px"}>
+            <S.TableListContainer>
+                <S.DataContainer $alignIten={"center"} $justifyContent={"space-between"}>
                     <h3>{title}</h3>
                     {isExpanded ? 
-                        <img src='/images/expand.png' alt='Expandir' onClick={toggleExpand} />
+                        <S.ImageList src='/images/expand.png' alt='Expandir' onClick={toggleExpand} />
                         : 
-                        <img src='/images/recall.png' alt='Recolher' onClick={toggleExpand} />
+                        <S.ImageList src='/images/recall.png' alt='Recolher' onClick={toggleExpand} />
                     }
-                </div>
+                </S.DataContainer>
 
                 {!isExpanded ?
                     listing.length > 0 ? listing.map(field =>
                         <div key={field.name}>
-                            <div className="header-container">
+                            <S.DataContainer $alignIten={"center"} $justifyContent={"space-between"}>
                                 <h4>{field.name}</h4>
                                 <input type='hidden' value={field.name} />
-                                <img src='/images/trash.png' alt='Delete' onClick={(event) => action(field.id)} />
-                            </div>
+                                <S.ImageList src='/images/trash.png' alt='Delete' onClick={(event) => action(field.id)} />
+                            </S.DataContainer>
                             <hr/>
                         </div>
                     ) : <p>Nenhum registro para exibir</p>
                     : ''
                 }
-            </div>
-        </section>
+            </S.TableListContainer>
+        </S.DataContainer>
     )
 }
 

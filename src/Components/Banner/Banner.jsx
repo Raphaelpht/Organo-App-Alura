@@ -1,9 +1,9 @@
-import './style.css'
+import * as S from './styled'
 
 export const Banner = () => {
     return (
-        <header className='banner'>
-            <img src="/images/banner.png" alt="Organo Main Banner"/>
-        </header>
+        <S.BannerContainer>
+            <S.BannerImage src="/images/banner.png" alt="Organo Main Banner"/>
+        </S.BannerContainer>
     )
 }

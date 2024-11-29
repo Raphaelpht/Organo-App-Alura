@@ -1,4 +1,5 @@
-import './style.css'
+import * as S from './styled'
+import * as O from '../styled'
 
 const TextField = (props) => {
 
@@ -7,9 +8,9 @@ const TextField = (props) => {
     }
 
     return (
-        <div className="text-field">
-            <label>{props.label}</label>
-            <input
+        <S.TextContainer>
+            <O.Label>{props.label}</O.Label>
+            <S.InputText
                 id={props.label}
                 name={props.label}
                 value={props.value}
@@ -17,7 +18,7 @@ const TextField = (props) => {
                 placeholder={props.placeholder}
                 required={props.required}
             />
-        </div>
+        </S.TextContainer>
     )
 }
 

@@ -1,10 +1,10 @@
-import './style.css'
+import * as S from './styled'
 
 const Footer = (props) => {
     return (
-        <footer className='footer'>
-            <section>
-                <ul>
+        <S.FooterContainer>
+            <S.SectionContainer>
+                <S.FooterList>
                     <li>
                         <a href="https://facebook.com" target="_blank" rel='noreferrer'>
                             <img src='/images/fb.png' alt=''/>
@@ -20,15 +20,15 @@ const Footer = (props) => {
                             <img src='/images/ig.png' alt=''/>
                         </a>
                     </li>
-                </ul>
-            </section>
-            <section>
+                </S.FooterList>
+            </S.SectionContainer>
+            <S.SectionContainer>
                 <img src="/images/logo.png" alt="" />
-            </section>
-            <section>
-                <p>{props.children}</p>
-            </section>
-        </footer>
+            </S.SectionContainer>
+            <S.SectionContainer>
+                <S.FooterTitle>{props.children}</S.FooterTitle>
+            </S.SectionContainer>
+        </S.FooterContainer>
     )
 }
 
